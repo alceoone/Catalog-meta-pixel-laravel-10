@@ -15,6 +15,8 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
 </head>
 
 <body>
@@ -79,7 +81,26 @@
         <section class="my-5">
             <div class="flex">
                 <div class="w-3/6">
-                    image
+
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="object-cover w-full h-96"
+                                    src="https://source.unsplash.com/user/erondu/3000x900" alt="image" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="object-cover w-full h-96"
+                                    src="https://source.unsplash.com/collection/190727/3000x900" alt="image" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="object-cover w-full h-96"
+                                    src="https://source.unsplash.com/collection/190728/3000x900" alt="image" />
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </div>
                 <div class="w-3/6">
                     title
@@ -290,6 +311,21 @@
             </div>
         </div>
     </footer>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+          cssMode: true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          pagination: {
+            el: ".swiper-pagination",
+          },
+          mousewheel: true,
+          keyboard: true,
+        });
+      </script>
+  
 </body>
 
 </html>
