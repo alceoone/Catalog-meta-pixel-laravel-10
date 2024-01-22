@@ -12,25 +12,69 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
-    <nav class="shadow">
-        <div class="container flex flex-wrap py-5 m-auto justify-between">
-            <div class="">
-                <a href="">Brand Name</a>
+
+
+    <nav class="bg-gray-700 p-4" x-data="{ open: false, mouseTimeout = null }">
+        <div class="container m-auto flex justify-between">
+            <div class="text-white">
+                <a href="" class="text-2xl">
+                    Brand Name
+                </a>
             </div>
-            <div class="">
-                <ul class="flex flex-wrap space-x-3">
-                    <li>beranda</li>
-                    <li>produk</li>
-                    <li>contak</li>
-                </ul>
+            <ul class="flex items-center space-x-4">
+                <li><a href="#" class="text-white">Home</a></li>
+                <li x-data="{ open: false }" @click="open = !open" @click.away="open = false" @mouseenter="open = true"
+                    @mouseleave="mouseTimeout = setTimeout(() => { open = false }, 1000)" class="static group">
+                    <a href="#" class="text-white">Men's Clothing</a>
+                    <div x-show="open" @mouseenter="clearTimeout(mouseTimeout)"
+                        @mouseleave="mouseTimeout = setTimeout(() => { open = false }, 1000)"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-300"
+                        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
+                        class="absolute left-0 right-0 z-[1000] mt-5 w-full bg-white border-none shadow-lg dark:bg-neutral-700 dark:text-neutral-200">
+                        <div class="p-4 container m-auto">
+                            <h3 class="text-lg font-bold mb-2">Web Design</h3>
+                            <a href="#" class="block text-neutral-600 hover:text-neutral-800">Responsive
+                                Design</a>
+                            <a href="#" class="block text-neutral-600 hover:text-neutral-800">UI/UX Design</a>
+                            <a href="#" class="block text-neutral-600 hover:text-neutral-800">Wireframing</a>
+
+                            <h3 class="text-lg font-bold mt-4 mb-2">Development</h3>
+                            <a href="#" class="block text-neutral-600 hover:text-neutral-800">Front-end</a>
+                            <a href="#" class="block text-neutral-600 hover:text-neutral-800">Back-end</a>
+                            <a href="#" class="block text-neutral-600 hover:text-neutral-800">Database Design</a>
+
+                            <h3 class="text-lg font-bold mt-4 mb-2">Other Services</h3>
+                            <a href="#" class="block text-neutral-600 hover:text-neutral-800">SEO</a>
+                            <a href="#" class="block text-neutral-600 hover:text-neutral-800">Social Media
+                                Marketing</a>
+                            <a href="#" class="block text-neutral-600 hover:text-neutral-800">Content Writing</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li><a href="#" class="text-white">Women's Clothing</a></li>
+            </ul>
+            <div class="text-center">
+                <div class="flex items-center">
+                    <button class="m-auto py-1 text-xl text-white">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
+
+
+
+
     <main class="container m-auto w-max-7 my-5">
         <section class="my-5">
             <div class="flex">
@@ -76,7 +120,7 @@
                         <div class="relative hover:shadow-md transition-opacity duration-600">
                             <div class="absolute left-0">
                                 <div class="flex">
-                                    <span class="text-xs bg-red-500 text-white py-0.5 px-1">Diskon 20%</span>
+                                    <span class="text-xs bg-red-500 text-white py-0.5 px-1">Diskon</span>
                                 </div>
                                 <div class="flex">
                                     <span class="text-xs bg-white text-grey-500 py-0.5 px-1">New</span>
@@ -98,7 +142,8 @@
                                             {{ number_format(5000000) }}</p>
                                     </div>
                                     <div>
-                                        <p class="text-xs md:text-base text-base font-bold text-red-500">Rp {{ number_format(500000) }}</p>
+                                        <p class="text-xs md:text-base text-base font-bold text-red-500">Rp
+                                            {{ number_format(500000) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +151,9 @@
                     </div>
                 </div>
                 <div class="m-auto text-center my-3">
-                    <a href="" class="bg-gray-500 text-white hover:bg-gray-50 hover:text-gray-700 hover:border border-gray-700 hover:shadow py-2 px-12">Show More</a>
+                    <a href=""
+                        class="bg-gray-500 text-white hover:bg-gray-50 hover:text-gray-700 hover:border border-gray-700 hover:shadow py-2 px-12">Show
+                        More</a>
                 </div>
             </div>
         </section>
@@ -122,7 +169,9 @@
                         </div>
                         <div class="w-1/2 m-auto">
                             <span>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit molestias temporibus omnis labore ab iste reiciendis sapiente adipisci voluptatibus esse dolore, maiores neque qui cum totam, iure corporis nisi necessitatibus?
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit molestias temporibus
+                                omnis labore ab iste reiciendis sapiente adipisci voluptatibus esse dolore, maiores
+                                neque qui cum totam, iure corporis nisi necessitatibus?
                             </span>
                         </div>
                     </div>
@@ -132,7 +181,7 @@
                         <div class="relative hover:shadow-md transition-opacity duration-600">
                             <div class="absolute left-0">
                                 <div class="flex">
-                                    <span class="text-xs bg-red-500 text-white py-0.5 px-1">Diskon 20%</span>
+                                    <span class="text-xs bg-red-500 text-white py-0.5 px-1">Diskon</span>
                                 </div>
                                 <div class="flex">
                                     <span class="text-xs bg-white text-grey-500 py-0.5 px-1">New</span>
@@ -154,7 +203,8 @@
                                             {{ number_format(5000000) }}</p>
                                     </div>
                                     <div>
-                                        <p class="text-xs md:text-base text-base font-bold text-red-500">Rp {{ number_format(500000) }}</p>
+                                        <p class="text-xs md:text-base text-base font-bold text-red-500">Rp
+                                            {{ number_format(500000) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +212,9 @@
                     </div>
                 </div>
                 <div class="m-auto text-center my-3">
-                    <a href="" class="bg-gray-500 text-white hover:bg-gray-50 hover:text-gray-700 hover:border border-gray-700 hover:shadow py-2 px-12">Show More</a>
+                    <a href=""
+                        class="bg-gray-500 text-white hover:bg-gray-50 hover:text-gray-700 hover:border border-gray-700 hover:shadow py-2 px-12">Show
+                        More</a>
                 </div>
             </div>
         </section>
@@ -178,7 +230,9 @@
                         </div>
                         <div class="w-1/2 m-auto">
                             <span>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit molestias temporibus omnis labore ab iste reiciendis sapiente adipisci voluptatibus esse dolore, maiores neque qui cum totam, iure corporis nisi necessitatibus?
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit molestias temporibus
+                                omnis labore ab iste reiciendis sapiente adipisci voluptatibus esse dolore, maiores
+                                neque qui cum totam, iure corporis nisi necessitatibus?
                             </span>
                         </div>
                     </div>
@@ -188,7 +242,7 @@
                         <div class="relative hover:shadow-md transition-opacity duration-600">
                             <div class="absolute left-0">
                                 <div class="flex">
-                                    <span class="text-xs bg-red-500 text-white py-0.5 px-1">Diskon 20%</span>
+                                    <span class="text-xs bg-red-500 text-white py-0.5 px-1">Diskon</span>
                                 </div>
                                 <div class="flex">
                                     <span class="text-xs bg-white text-grey-500 py-0.5 px-1">New</span>
@@ -210,7 +264,8 @@
                                             {{ number_format(5000000) }}</p>
                                     </div>
                                     <div>
-                                        <p class="text-xs md:text-base text-base font-bold text-red-500">Rp {{ number_format(500000) }}</p>
+                                        <p class="text-xs md:text-base text-base font-bold text-red-500">Rp
+                                            {{ number_format(500000) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +273,9 @@
                     </div>
                 </div>
                 <div class="m-auto text-center my-3">
-                    <a href="" class="bg-gray-500 text-white hover:bg-gray-50 hover:text-gray-700 hover:border border-gray-700 hover:shadow py-2 px-12">Show More</a>
+                    <a href=""
+                        class="bg-gray-500 text-white hover:bg-gray-50 hover:text-gray-700 hover:border border-gray-700 hover:shadow py-2 px-12">Show
+                        More</a>
                 </div>
             </div>
         </section>
