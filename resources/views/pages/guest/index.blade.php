@@ -16,13 +16,48 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <style>
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+            background-color: #374151;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 24px;
+            /* Adjust arrow icon size */
+        }
+
+        /* Custom styles for Swiper pagination */
+        .swiper-pagination {
+            color: #374151;
+            /* Change pagination color */
+        }
+
+        .swiper-pagination-bullet {
+            background-color: #374151;
+            /* Change individual dot color */
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #2c3e50;
+            /* Change active dot color */
+        }
+    </style>
+
 
 </head>
 
 <body>
 
 
-    <nav class="bg-gray-700 p-4" x-data="{ open: false, mouseTimeout = null }">
+    <nav class="bg-gray-800 p-4" x-data="{ open: false, mouseTimeout = null }">
         <div class="container m-auto flex justify-between">
             <div class="text-white">
                 <a href="" class="text-2xl">
@@ -80,31 +115,27 @@
     <main class="container m-auto w-max-7 my-5">
         <section class="my-5">
             <div class="flex">
-                <div class="w-3/6">
 
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img class="object-cover w-full h-96"
-                                    src="https://source.unsplash.com/user/erondu/3000x900" alt="image" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="object-cover w-full h-96"
-                                    src="https://source.unsplash.com/collection/190727/3000x900" alt="image" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="object-cover w-full h-96"
-                                    src="https://source.unsplash.com/collection/190728/3000x900" alt="image" />
-                            </div>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img class="object-cover w-full h-96" src="https://source.unsplash.com/user/erondu/3000x900"
+                                alt="image" />
                         </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination"></div>
+                        <div class="swiper-slide">
+                            <img class="object-cover w-full h-96"
+                                src="https://source.unsplash.com/collection/190727/3000x900" alt="image" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img class="object-cover w-full h-96"
+                                src="https://source.unsplash.com/collection/190728/3000x900" alt="image" />
+                        </div>
                     </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <div class="w-3/6">
-                    title
-                </div>
+
             </div>
         </section>
         <section>
@@ -301,31 +332,74 @@
             </div>
         </section>
     </main>
-    <footer class="bg-gray-500 relative bottom-0">
-        <div class="container m-auto py-5">
-            footeer
-        </div>
-        <div class="bg-white">
-            <div class="container m-auto py-5">
-                <p>&copy; {{ date('Y') }} Brand Name.</p>
+    <footer class="bg-gray-800 text-white p-8 mt-8">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Bagian 1 -->
+                <div>
+                    <h2 class="text-xl font-semibold mb-4">Tentang Kami</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel urna mauris.</p>
+                </div>
+
+                <!-- Bagian 2 -->
+                <div>
+                    <h2 class="text-xl font-semibold mb-4">Hubungi Kami</h2>
+                    <p>Email: info@example.com</p>
+                    <p>Telepon: (123) 456-7890</p>
+                </div>
+
+                <!-- Bagian 3 -->
+                <div>
+                    <h2 class="text-xl font-semibold mb-4">Link Penting</h2>
+                    <ul>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat dan Ketentuan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Bagian 4 -->
+                <div>
+                    <h2 class="text-xl font-semibold mb-4">Ikuti Kami</h2>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="container m-auto mt-5 py-5">
+            <p>&copy; {{ date('Y') }} Brand Name.</p>
+        </div>
     </footer>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
-          cssMode: true,
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-          pagination: {
-            el: ".swiper-pagination",
-          },
-          mousewheel: true,
-          keyboard: true,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+
+            cssMode: true,
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+
+            mousewheel: true,
+            keyboard: true,
+
         });
-      </script>
-  
+    </script>
 </body>
 
 </html>
