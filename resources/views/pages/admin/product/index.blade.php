@@ -4,10 +4,11 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Product List') }}
             </h2>
-            <a href="{{ route('admin.product.create')}}"
+            <a href="{{ route('admin.product.store')}}"
                 class="bg-gray-800 text-white border border-gray-500 rounded hover:bg-gray-100 hover:text-gray-800 py-2 px-5">
                 Tambah data
             </a>
+
         </div>
     </x-slot>
 
@@ -18,6 +19,7 @@
                     <div class="overflow-x-auto">
                         <table class="min-w-full bg-white border border-gray-300">
                             <!-- Table Head -->
+                            
                             <thead>
                                 <tr>
                                     <th class="py-2 px-4 border">ID</th>
