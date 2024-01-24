@@ -4,10 +4,9 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Category') }}
             </h2>
-            <a href="{{ route('admin.category.create') }}"
-                class="bg-gray-800 text-white border border-gray-500 rounded hover:bg-gray-100 hover:text-gray-800 py-2 px-5">
-                Create Items
-            </a>
+            <div>
+                @include('pages.admin.category.partials.dropdown-create-category-option')
+            </div>
         </div>
     </x-slot>
 
@@ -21,7 +20,8 @@
                             <thead>
                                 <tr>
                                     <th class="py-1 border">ID</th>
-                                    <th class="py-1 border">Category</th>
+                                    <th class="py-1 border">Category
+                                    </th>
                                     <th class="py-1 border">Sub Category</th>
                                 </tr>
                             </thead>
