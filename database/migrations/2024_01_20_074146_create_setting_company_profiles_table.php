@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('setting_company_profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('name_company')->nullable();
             $table->timestamps();
         });
     }

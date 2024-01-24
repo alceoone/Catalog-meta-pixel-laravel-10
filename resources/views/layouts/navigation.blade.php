@@ -18,10 +18,10 @@
                     <x-nav-link :href="route('admin.product.index')" :active="request()->routeIs('admin.product.*')">
                         {{ __('Product') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('admin.category.index')" :active="request()->routeIs('admin.category.*')">
                         {{ __('Category') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('admin.setting.general.index')" :active="request()->routeIs('admin.setting.general.*')">
                         {{ __('Setting') }}
                     </x-nav-link>
                 </div>

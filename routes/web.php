@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,10 +32,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('admin')->group(function () {
+        // Product Admin
         Route::get('/product', [ProductController::class, 'index'])->name('admin.product.index');
         Route::get('/product/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+
+        // Category Admin
+        Route::get('/category', [CategoryController::class, 'index'])->name('admin.category.index');
+        Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+
+        // Setting Admin
+        Route::get('/setting/general', [SettingController::class, 'index'])->name('admin.setting.general.index');
     });
 
 });

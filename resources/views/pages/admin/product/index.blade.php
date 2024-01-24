@@ -4,11 +4,10 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Product List') }}
             </h2>
-            <a href="{{ route('admin.product.store')}}"
+            <a href="{{ route('admin.product.store') }}"
                 class="bg-gray-800 text-white border border-gray-500 rounded hover:bg-gray-100 hover:text-gray-800 py-2 px-5">
-                Tambah data
+                Create Items
             </a>
-
         </div>
     </x-slot>
 
@@ -19,7 +18,7 @@
                     <div class="overflow-x-auto">
                         <table class="min-w-full bg-white border border-gray-300">
                             <!-- Table Head -->
-                            
+
                             <thead>
                                 <tr>
                                     <th class="py-2 px-4 border">ID</th>
@@ -32,22 +31,31 @@
                             </thead>
                             <!-- Table Body -->
                             <tbody>
-                                <tr>
-                                    <td class="py-2 px-4 border">1</td>
-                                    <td class="py-2 px-4 border">John Doe</td>
-                                    <td class="py-2 px-4 border">john@example.com</td>
-                                    <td class="py-2 px-4 border">Admin</td>
-                                    <td class="py-2 px-4 border">Admin</td>
-                                    <td class="py-2 px-4 border">
-                                        <div class="flex flex-wrap space-x-1">
-                                            <div>view</div>
-                                            <div>edit</div>
-                                            <div>delete</div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($data as $item)
+                                    <tr>
+                                        <td class="py-2 px-4 border">1</td>
+                                        <td class="py-2 px-4 border">John Doe</td>
+                                        <td class="py-2 px-4 border">john@example.com</td>
+                                        <td class="py-2 px-4 border">Admin</td>
+                                        <td class="py-2 px-4 border">Admin</td>
+                                        <td class="py-2 px-4 border">
+                                            <div class="flex flex-wrap space-x-1">
+                                                <div>view</div>
+                                                <div class="bg-orange-100 text-sm py-1 px-2 text-orange-500 rounded border border-orange-500 hover:bg-orange-500 hover:text-white">
+                                                    <a href="{{ route('admin.product.edit', $item->id) }}">
+                                                        edit
+                                                    </a>
+                                                </div>
+                                                <div>delete</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="my-2">
+                        {{ $data->links() }}
                     </div>
                 </div>
             </div>

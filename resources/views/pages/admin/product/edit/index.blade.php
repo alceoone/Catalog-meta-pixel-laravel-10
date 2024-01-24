@@ -9,7 +9,6 @@
             <button onclick="openConfirmationModal('{{ $data->id }}')"
                 class="bg-red-500 text-white border border-red-500 rounded hover:bg-red-100 hover:text-red-500 py-2 px-5">Delete
                 Draf</button>
-
         </div>
     </x-slot>
 

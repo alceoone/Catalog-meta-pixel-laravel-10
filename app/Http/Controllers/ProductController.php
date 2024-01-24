@@ -9,7 +9,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view("pages.admin.product.index");
+        $data = Product::paginate(10);
+        return view("pages.admin.product.index", compact('data'));
     }
     public function store()
     {
