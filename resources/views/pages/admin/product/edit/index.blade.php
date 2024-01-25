@@ -18,11 +18,12 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="overflow-x-auto">
                         <div class="">
+
+                            @include('pages.admin.product.partials.add-images')
                             Product Information
                             <div class="p-1">
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     @csrf
-
                                     <div class="mb-4 relative">
                                         <label for="name" class="block text-base font-medium text-gray-700">Name
                                             Product<span class="pl-1 text-red-500">*</span></label>
@@ -40,7 +41,23 @@
                                             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="mb-4 relative">
+                                        <label for="category" class="block text-base font-medium text-gray-700">Category
+                                            Product<span class="pl-1 text-red-500">*</span></label>
 
+                                        <div class="relative">
+                                            <input type="text" name="name" id="name"
+                                                class="mt-1 p-2 w-full border border-gray-300 rounded-md text-gray-700 relative z-10"
+                                                placeholder="Name Product" maxlength="120"
+                                                oninput="updateCharacterCount()">
+                                            <div id="characterCount"
+                                                class="absolute inset-y-0 mx-auto right-2 flex items-center justify-center text-sm text-gray-500 z-20">
+                                                0/120</div>
+                                        </div>
+                                        @error('name')
+                                            <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
                                 </form>
                             </div>
@@ -55,7 +72,8 @@
     <div id="dark-overlay" class="z-[999] fixed inset-0 bg-gray-800 bg-opacity-50 hidden transition-opacity"></div>
 
     <!-- Confirmation Modal -->
-    <div id="confirmation-modal" class="fixed z-[1000] top-1/4 inset-x-0 mx-auto flex items-center justify-center hidden transition-opacity">
+    <div id="confirmation-modal"
+        class="fixed z-[1000] top-1/4 inset-x-0 mx-auto flex items-center justify-center hidden transition-opacity">
         <div class="bg-white p-4 rounded shadow-md">
             <p class="mb-4">Are you sure you want to delete this product?</p>
             <div class="flex justify-end">

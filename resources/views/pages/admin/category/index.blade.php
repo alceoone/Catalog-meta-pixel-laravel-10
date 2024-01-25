@@ -19,7 +19,7 @@
                         <table class="min-w-full bg-white border border-gray-300">
                             <thead>
                                 <tr>
-                                    <th class="py-1 border">ID</th>
+                                    <th class="py-1 border">No.</th>
                                     <th class="py-1 border">Category
                                     </th>
                                     <th class="py-1 border">Sub Category</th>
@@ -29,7 +29,7 @@
 
                                 @forelse ($categories as $index => $category)
                                     <tr>
-                                        <td class="py-2 px-2 border">{{ $index+1 }}</td>
+                                        <td class="py-2 px-2 border text-center">{{ ($categories->currentPage() - 1) * $categories->perPage() + $loop->iteration }}.</td>
                                         <td class="py-2 px-2 border">{{ $category->name }}</td>
                                         <td class="py-2 px-2 border">
                                             @if ($category->children->isNotEmpty())

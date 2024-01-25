@@ -24,13 +24,13 @@ class CategoryController extends Controller
             Category::create([
                 'name' => $request->title
             ]);
-            return redirect(route('admin.category.index'));
+            return redirect()->route('admin.category.index')->with('success','Create Category Successfully.');
         } else if($request->inisial == 'subcategory') {
             Category::create([
                 'name' => $request->title,
                 'parent_id' => $request->category_id
             ]);
-            return redirect(route('admin.category.index'));
+            return redirect()->route('admin.category.index')->with('success','Create Sub Category Successfully.');
         }
 
     }
