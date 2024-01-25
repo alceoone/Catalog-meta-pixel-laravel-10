@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
         // Category Admin
         Route::get('/category', [CategoryController::class, 'index'])->name('admin.category.index');
         Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+        Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
 
         // Setting Admin
         Route::get('/setting/general', [SettingController::class, 'index'])->name('admin.setting.general.index');

@@ -18,4 +18,20 @@ class CategoryController extends Controller
     public function create() {
         return view('pages.admin.category.create.index');
     }
+    public function store(Request $request){
+
+        if($request->inisial == 'category'){
+            Category::create([
+                'name' => $request->title
+            ]);
+            return redirect(route('admin.category.index'));
+        } else if($request->inisial == 'subcategory') {
+            Category::create([
+                'name' => $request->title,
+                'parent_id' => $request->category_id
+            ]);
+            return redirect(route('admin.category.index'));
+        }
+
+    }
 }

@@ -3,7 +3,7 @@
         Create Items
     </button>
 
-    <div x-show="open" @click.away="open = false"  class="absolute mt-2 w-64 bg-white border rounded-md shadow-lg">
+    <div x-show="open" @click.away="open = false" class="absolute mt-2 w-64 bg-white border rounded-md shadow-lg">
         <div class="py-1">
             <div x-on:click="selectedOptionCategory = true; open = false"
                 class="cursor-pointer px-4 py-2 hover:bg-gray-200">Category
@@ -21,8 +21,15 @@
         <div class="bg-white p-4 z-20 rounded w-full">
             <h2 class="text-lg font-semibold mb-4">Create Category</h2>
 
-            <form>
+            <form method="post" action="{{ route('admin.category.store') }}"
+                class="mt-6 space-y-6">
+                @csrf
                 <div class="mb-4 relative">
+
+                    <input type="text" name="inisial" id="inisial"
+                        class="hidden mt-1 p-2 w-full border border-gray-300 rounded-md text-gray-700 relative z-10"
+                        value="category">
+
                     <label for="title" class="block text-base font-medium text-gray-700">Category
                         <span class="pl-1 text-red-500">*</span></label>
 
@@ -38,11 +45,14 @@
                         <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </div>
-                <!-- Add other form fields as needed -->
-                <button type="submit" @click.prevent="submitForm"
-                    class="bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button>
-            </form> <button @click="selectedOptionCategory = false"
-                class="bg-gray-300 px-4 py-2 rounded-md ml-2">Cancel</button>
+                <div class="flex flex-wrap">
+                <button type="submit"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button> 
+                <button type="reset"
+                    @click="selectedOptionCategory = false"
+                    class="bg-gray-300 px-4 py-2 rounded-md ml-2">Cancel</button>
+                </div>
+            </form>
 
         </div>
     </div>
