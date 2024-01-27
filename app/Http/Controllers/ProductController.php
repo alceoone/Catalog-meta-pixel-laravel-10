@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ImageProduct;
 
 class ProductController extends Controller
 {
@@ -23,7 +24,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $data = Product::find($id);
-        return view("pages.admin.product.edit.index", compact('data'));
+        $dataImage = ImageProduct::where('product_id', $id)->get();
+
+        return view("pages.admin.product.edit.index", compact('data', 'dataImage'));
     }
     public function destroy(Request $request, $id)
     {

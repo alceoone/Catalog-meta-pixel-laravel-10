@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ProductImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/product/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+        Route::post('/product/upload/image', [ProductImageController::class, 'storeImageProduct'])->name('admin.product.image.upload');
+        Route::get('/delete-image/{id}', [ProductImageController::class, 'deleteImage'])->name('admin.product.delete.image');
+        
 
         // Category Admin
         Route::get('/category', [CategoryController::class, 'index'])->name('admin.category.index');

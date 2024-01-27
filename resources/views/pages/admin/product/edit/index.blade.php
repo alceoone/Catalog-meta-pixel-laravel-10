@@ -3,7 +3,6 @@
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Product Create') }}
-
                 {{ $data->id }}
             </h2>
             <button onclick="openConfirmationModal('{{ $data->id }}')"
@@ -18,9 +17,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="overflow-x-auto">
                         <div class="">
-
                             @include('pages.admin.product.partials.add-images')
-                            Product Information
+                            <div class="py-5">
+                                Product Information
+                            </div>
                             <div class="p-1">
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     @csrf
