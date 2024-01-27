@@ -14,6 +14,14 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name_product')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('sku')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->decimal('price', 10, 2);
+            $table->decimal('price_discount', 10, 2)->nullable();
+            $table->enum('status_discount', ['on', 'off']);
+            $table->enum('condition', ['new', 'second']);
+            $table->json('tags')->nullable();
             $table->longText('description')->nullable();
             $table->enum('status', ['draf','ready','publish', 'archives']);
             $table->timestamps();

@@ -11,6 +11,15 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    {{-- CKEditor CDN --}}<script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
+
+    
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 600px;
+            margin : 2px;
+        }
+    </style>
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])

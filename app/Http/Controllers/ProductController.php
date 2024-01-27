@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ImageProduct;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -25,8 +26,9 @@ class ProductController extends Controller
     {
         $data = Product::find($id);
         $dataImage = ImageProduct::where('product_id', $id)->get();
+        $dataCategory = Category::whereNotNull('parent_id')->get();
 
-        return view("pages.admin.product.edit.index", compact('data', 'dataImage'));
+        return view("pages.admin.product.edit.index", compact('data', 'dataImage','dataCategory'));
     }
     public function destroy(Request $request, $id)
     {
