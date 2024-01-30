@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
         // Product Image Area
         Route::post('/product/upload/image', [ProductImageController::class, 'storeImageProduct'])->name('admin.product.image.upload');
         Route::get('/delete-image/{id}', [ProductImageController::class, 'deleteImage'])->name('admin.product.delete.image');
+        // Product Save to Publish
+        Route::post('/product/to/publish/{id}', [ProductController::class, 'saveToPublish'])->name('admin.product.to.publish');
 
         // Category Admin
         Route::get('/category', [CategoryController::class, 'index'])->name('admin.category.index');

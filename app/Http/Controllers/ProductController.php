@@ -43,4 +43,22 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
 
     }
+
+    public function saveToPublish(Request $request, $productId) {
+        // return $request;
+        $product = Product::find($productId); 
+        $product->update([
+            'name_product' => $request->name,
+            'category_id' => $request->category,
+            'price' => (float) str_replace(['$', ','], '', $request->price),
+            'price_discount' => (float) str_replace(['$', ','], '', $request->price_discount),
+            'status_discount' => ($request->price_discount_toggle == 0) ? 'off' : 'on',
+            'condition' => $request->condition,
+            'description' => $request->body,
+            'status' => 'ready',
+        ]);
+
+
+        return redirect(route('admin.product.edit', $productId));
+    }
 }

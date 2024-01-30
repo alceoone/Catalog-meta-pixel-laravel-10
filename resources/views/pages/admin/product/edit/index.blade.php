@@ -20,9 +20,10 @@
                         <div class="">
                             @include('pages.admin.product.partials.add-images')
                             <div class="p-1">
-                                <form action="" method="POST" enctype="multipart/form-data"
-                                    x-data="{ toggle: false }" @submit.prevent="submitForm">
+                                <form action="{{ route('admin.product.to.publish', $data->id) }}" method="POST"
+                                    enctype="multipart/form-data" x-data="{ toggle: false }">
                                     @csrf
+                                    
                                     <div class="mb-4">
                                         <label for="name" class="block text-base font-medium text-gray-700">Name
                                             Product<span class="pl-1 text-red-500">*</span></label>
@@ -31,7 +32,8 @@
                                             <input type="text" name="name" id="name"
                                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md text-gray-700 relative z-10"
                                                 placeholder="Example : men's shoes (type, category) + shop name (brand name) + green color (description)"
-                                                maxlength="120" oninput="updateCharacterCount()">
+                                                value="{{ old('name', $data->name_product) }}" maxlength="120"
+                                                oninput="updateCharacterCount()">
                                             <div id="characterCount"
                                                 class="absolute inset-y-0 mx-auto right-2 flex items-center justify-center text-sm text-gray-500 z-20">
                                                 0/120</div>
@@ -41,6 +43,11 @@
                                         @enderror
                                     </div>
 
+
+                                    <div class="flex flex-wrap">
+                                    
+                                    </div>
+
                                     <div class="flex flex-wrap">
                                         <div class="mb-4 w-7/12">
                                             <label for="category"
@@ -48,12 +55,13 @@
                                                 Product<span class="pl-1 text-red-500">*</span></label>
                                             <select id="category" name="category"
                                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                                <option value="" {{ is_null(old('category', $data->category_id)) ? 'selected' : '' }}>Select Category</option>
                                                 @foreach ($dataCategory as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    <option value="{{ $item->id }}" {{ old('category', $data->category_id) == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div x-data="{ condition: null }" class="w-5/12 pl-4">
+                                        <div x-data="{ condition: '{{ old('condition', $data->condition ?? 'new') }}' }" class="w-5/12 pl-4">
                                             <label class="block text-base font-medium text-gray-700">Condition</label>
 
                                             <div class="mt-3">
@@ -75,8 +83,9 @@
 
                                     {{-- Price --}}
                                     <div class="w-full flex flex-wrap">
-                                        <div class="mb-4 w-full">
-                                            <label class="block text-base font-medium text-gray-700">Status Discount</label>
+                                        <div class="mb-4 w-full" x-data="{ toggle: {{ old('price_discount_toggle', $data->status_discount == 'on' ? 1 : 0) }} }">
+                                            <label class="block text-base font-medium text-gray-700">Status
+                                                Discount</label>
 
                                             <div class="mt-2 flex w-1/2">
                                                 <button x-on:click.prevent="toggle = !toggle"
@@ -87,8 +96,12 @@
                                                 </button>
                                                 <div x-show="toggle" class="ml-2 text-gray-700">
                                                     Price of Discount is ON.
+                                                    <!-- Include the value of 'toggle' in a hidden input field -->
+                                                    <input type="hidden" name="price_discount_toggle"
+                                                        x-model="toggle ? 1 : 0">
                                                 </div>
                                             </div>
+
                                         </div>
                                         <div class="mb-4 w-1/2 pr-1">
                                             <label for="price"
@@ -99,7 +112,8 @@
                                                 <input type="text" name="price" id="price"
                                                     class="mt-1 p-2 w-full border border-gray-300 rounded-md text-gray-700 z-10"
                                                     placeholder="Example : $ 1.000.000,00" maxlength="12"
-                                                    oninput="formatCurrency(this)">
+                                                    value="{{ old('price', $data->price) }}"
+                                                    x-on:input="formatCurrency($event.target)" x-init="formatCurrency($el)">
                                             </div>
                                             @error('price')
                                                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -114,7 +128,8 @@
                                                 <input type="text" name="price_discount" id="price_discount"
                                                     class="mt-1 p-2 w-full border border-gray-300 rounded-md text-gray-700 z-10"
                                                     placeholder="Example : $ 1.000.000,00" maxlength="12"
-                                                    oninput="formatCurrency(this)">
+                                                    value="{{ old('price_discount', $data->price_discount) }}"
+                                                    x-on:input="formatCurrency($event.target)" x-init="formatCurrency($el)">
                                             </div>
                                             @error('price')
                                                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -123,11 +138,16 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="category" class="block text-base font-medium text-gray-700">Category
+                                        <label for="description_product"
+                                            class="block text-base font-medium text-gray-700">Description
                                             Product<span class="pl-1 text-red-500">*</span></label>
-                                        <textarea class="mt-1 block w-full" id="content" placeholder="Enter the Description" name="body"></textarea>
+                                        <textarea class="mt-1 block w-full" id="content" placeholder="Enter the Description" name="body">
+                                            {{ old('body', $data->description) }}
+                                        </textarea>
                                     </div>
 
+                                    <button type="submit"
+                                        class="bg-gray-800 text-white py-1 px-3 rounded">Kirim</button>
 
                                 </form>
                             </div>

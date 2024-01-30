@@ -17,13 +17,13 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('sku')->nullable();
             $table->integer('quantity')->nullable();
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 10, 2)->nullable();
             $table->decimal('price_discount', 10, 2)->nullable();
-            $table->enum('status_discount', ['on', 'off']);
-            $table->enum('condition', ['new', 'second']);
+            $table->enum('status_discount', ['on', 'off'])->nullable();
+            $table->enum('condition', ['new', 'second'])->nullable();
             $table->json('tags')->nullable();
             $table->longText('description')->nullable();
-            $table->enum('status', ['draf','ready','publish', 'archives']);
+            $table->enum('status', ['draf','ready','publish', 'archives'])->nullable();
             $table->timestamps();
         });
     }
