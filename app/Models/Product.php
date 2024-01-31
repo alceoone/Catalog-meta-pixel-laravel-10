@@ -22,6 +22,12 @@ class Product extends Model
         'description',
         'status',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function images()
     {
         return $this->hasMany(ImageProduct::class);
