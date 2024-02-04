@@ -24,6 +24,8 @@ return new class extends Migration
             $table->json('tags')->nullable();
             $table->longText('description')->nullable();
             $table->enum('status', ['draf','ready','publish', 'archives'])->nullable();
+            $table->integer('view')->default(0)->nullable();
+            $table->integer('share')->default(0)->nullable();
             $table->timestamps();
         });
     }

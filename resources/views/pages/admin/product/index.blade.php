@@ -51,12 +51,24 @@
                                         <td class="py-2 px-4 border">
                                             {{-- {{ $item->name_product }} --}}
                                             @if ($item->name_product !== null)
-                                                <p class="line-clamp-2">{{ $item->name_product }}</p>
+                                            <p class="line-clamp-2">{{ $item->name_product }}</p>
+                                            <p class="line-clamp-1 text-xs text-gray-400">
+                                                <i class="fa-regular fa-eye"></i> {{ $item->view }} Views
+                                                <i class="fa-solid fa-share-nodes"></i> {{ $item->share }} 
+                                            </p>
                                             @else
                                                 Title Empty
                                             @endif
                                         </td>
-                                        <td class="py-2 px-4 border">{{ $item->category->name }}</td>
+                                        <td class="py-2 px-4 border">
+                                            
+                                            @if ($item->category !== null && $item->category->name !== null)
+                                                {{ $item->category->name }}
+                                            @else
+                                                Belum Ada Category
+                                            @endif
+
+                                        </td>
                                         <td class="py-2 px-4 border">
                                             <div class="flex flex-wrap space-x-1">
                                                 <div>view</div>
