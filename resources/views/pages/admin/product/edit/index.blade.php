@@ -7,9 +7,13 @@
                 @endif
                 {{ $data->name_product }}
             </h2>
-            <button onclick="openConfirmationModal('{{ $data->id }}')"
-                class="bg-red-500 text-white border border-red-500 rounded hover:bg-red-100 hover:text-red-500 py-2 px-5">Delete
-                Draf</button>
+            <div class="flex flex-wrap space-x-1">
+                <button id="publishButton" type="button"
+                    class="bg-green-500 text-white border border-green-500 rounded hover:bg-green-100 hover:text-green-500 py-2 px-5">Publish</button>
+                <button onclick="openConfirmationModal('{{ $data->id }}')"
+                    class="bg-red-500 text-white border border-red-500 rounded hover:bg-red-100 hover:text-red-500 py-2 px-5">Delete
+                    Draf</button>
+            </div>
         </div>
     </x-slot>
     <div class="py-12">
@@ -20,10 +24,10 @@
                         <div class="">
                             @include('pages.admin.product.partials.add-images')
                             <div class="p-1">
-                                <form action="{{ route('admin.product.to.publish', $data->id) }}" method="POST"
-                                    enctype="multipart/form-data" x-data="{ toggle: false }">
+                                <form id="publishForm" action="{{ route('admin.product.to.publish', $data->id) }}"
+                                    method="POST" enctype="multipart/form-data" x-data="{ toggle: false }">
                                     @csrf
-                                    
+
                                     <div class="mb-4">
                                         <label for="name" class="block text-base font-medium text-gray-700">Name
                                             Product<span class="pl-1 text-red-500">*</span></label>
@@ -45,7 +49,7 @@
 
 
                                     <div class="flex flex-wrap">
-                                    
+
                                     </div>
 
                                     <div class="flex flex-wrap">
@@ -55,9 +59,13 @@
                                                 Product<span class="pl-1 text-red-500">*</span></label>
                                             <select id="category" name="category"
                                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-                                                <option value="" {{ is_null(old('category', $data->category_id)) ? 'selected' : '' }}>Select Category</option>
+                                                <option value=""
+                                                    {{ is_null(old('category', $data->category_id)) ? 'selected' : '' }}>
+                                                    Select Category</option>
                                                 @foreach ($dataCategory as $item)
-                                                    <option value="{{ $item->id }}" {{ old('category', $data->category_id) == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                    <option value="{{ $item->id }}"
+                                                        {{ old('category', $data->category_id) == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -129,7 +137,8 @@
                                                     class="mt-1 p-2 w-full border border-gray-300 rounded-md text-gray-700 z-10"
                                                     placeholder="Example : $ 1.000.000,00" maxlength="12"
                                                     value="{{ old('price_discount', $data->price_discount) }}"
-                                                    x-on:input="formatCurrency($event.target)" x-init="formatCurrency($el)">
+                                                    x-on:input="formatCurrency($event.target)"
+                                                    x-init="formatCurrency($el)">
                                             </div>
                                             @error('price')
                                                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -146,8 +155,7 @@
                                         </textarea>
                                     </div>
 
-                                    <button type="submit"
-                                        class="bg-gray-800 text-white py-1 px-3 rounded">Kirim</button>
+                                    {{-- <button type="submit" class="bg-gray-800 text-white py-1 px-3 rounded">Save</button> --}}
 
                                 </form>
                             </div>
@@ -279,5 +287,14 @@
             // Submit the form
             document.getElementById('confirmation-form').submit();
         }
+        // Inisialisasi tombol dan form dengan ID
+        const publishButton = document.getElementById('publishButton');
+        const publishForm = document.getElementById('publishForm');
+
+        // Tambahkan event listener untuk tombol
+        publishButton.addEventListener('click', function() {
+            // Lakukan sesuatu sebelum submit form (jika diperlukan)
+            publishForm.submit();
+        });
     </script>
 </x-app-layout>
