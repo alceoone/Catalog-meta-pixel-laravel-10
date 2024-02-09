@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
         // Setting Admin
         Route::get('/setting/general', [SettingController::class, 'index'])->name('admin.setting.general.index');
+        
     });
 
 });
