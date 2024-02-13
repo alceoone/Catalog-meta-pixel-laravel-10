@@ -173,7 +173,9 @@
     <div id="confirmation-modal"
         class="fixed z-[1000] top-1/4 inset-x-0 mx-auto flex items-center justify-center hidden transition-opacity">
         <div class="bg-white p-4 rounded shadow-md">
-            <p class="mb-4">Are you sure you want to delete this product?</p>
+            <p class="mb-4">
+                Are you sure you want to delete this product?
+            </p>
             <div class="flex justify-end">
                 <!-- Confirm button triggers form submission -->
                 <button onclick="confirmDelete()"
